@@ -5,6 +5,7 @@
 */
 function printNav($view , $active = 0, $login = 1){
     if($active === null ) $active = 0; 
+	if($login  == null) $login = 1; 
     $navdata = array (
         array(
             'href' => $view -> url(array('controller'=>'index','action' => 'index')),
@@ -29,7 +30,7 @@ function printNav($view , $active = 0, $login = 1){
         );
     $navdata[$active]['active'] = 'active' ; 
     if($login === 1){
-    echo' 
+   /* echo' 
 <div class="fade modal" id="loginModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -44,7 +45,7 @@ function printNav($view , $active = 0, $login = 1){
         </div>
     </div>
 </div>
-<!-- End of login modal section -->';
+<!-- End of login modal section -->';*/
 }
 echo '
 <nav class="nav navbar-nav navbar-default navbar-fixed-top" role="navigation" >
@@ -67,9 +68,16 @@ echo '
 
             echo '</ul>
             <ul class="navbar-right nav navbar-nav">
-                <li>
-                    <a class="navbar-right" data-toggle="modal" href="#loginModal">
-                        <span class="glyphicon glyphicon-log-in"></span> Log in / Register
+                <li>';
+				if (is_array($login)) 
+					echo 'Hello '.$login['fname'].' '; 
+					//var_dump($login); 
+                    echo '<a class="navbar-right" href="';
+					if( $login === 1) echo $view -> url(['controller' => 'user' , 'action' => 'login']).'">
+                        <span class="glyphicon glyphicon-log-in"></span> Log in'; 
+					else echo $view -> url(['controller' => 'user' , 'action' => 'logout']).'">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out'; 
+					echo '
                     </a>
                 </li>
             </ul>

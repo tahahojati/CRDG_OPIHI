@@ -4,13 +4,14 @@ class IndexController extends Zend_Controller_Action
 {
 
     public function init()
-    {
-        /* Initialize action controller here */
+    {	
+		$auth = Zend_Auth::getInstance(); 
+		$this -> view -> loggedInName = $auth -> hasIdentity()? $auth-> getIdentity() : null; 
     }
 
     public function indexAction()
     {
-        // action body
+
     }
 
     public function contactAction()

@@ -3,10 +3,15 @@
 class UserController extends Zend_Controller_Action
 {
     public $model ;
+	public $authService; 
+	public $loginForm; 
     public function init()
     {
         /* Initialize action controller here */
         $this -> model = new Application_Model_User();
+		$this -> authService = new Application_Service_Auth(); 
+		$this -> loginForm = $this -> model -> getLoginForm(); 
+		$this -> view -> loginForm = $this -> loginForm;
     }
 
     public function indexAction()
@@ -54,12 +59,25 @@ class UserController extends Zend_Controller_Action
 
     public function authenticateAction()
     {
-        // action body
-    }
+	$request = $this -> getRequest(); 
+		if(! $request -> isPost())
+			return $this -> _helper->redirector('login'); 
+		$post = $request -> getPost(); 
+		$form = $this -> loginForm;  
+		if(! $form -> isValid($post) ){
+			return $this -> render('login'); 	
+		}
+		if (false === $this -> authService -> authenticate( $form -> getValues() )){
+			$form -> setDescription('Login failed.  Please try again.'); 
+			return $this -> render('login'); 
+		}
+		return $this -> _helper -> redirector -> gotoSimple('index', 'index'); 
+	}
 
     public function logoutAction()
     {
-        // action body
+		$this -> authService -> logOut(); 
+		return $this -> _helper ->redirector -> gotoSimple('index' ,'index'); 
     }
 
 

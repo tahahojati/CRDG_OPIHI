@@ -17,7 +17,11 @@ class Application_Model_User
             $this -> forms['registration'] = new Application_Form_Register();
         return $this -> forms['registration'];
     }
-    
+    public function getLoginForm(){
+		if(!isset($this -> forms['login']))
+			$this -> forms['login'] = new Application_Form_Login(); 
+		return $this -> forms['login']; 	
+	}
     public function registerUser( $post ){
         $rform = $this -> getRegistrationForm();
         $rform -> populate($post);

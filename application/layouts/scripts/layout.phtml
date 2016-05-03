@@ -7,7 +7,7 @@
     <?= $this->headLink(); ?>
 </head>
 <body>
-    <? printNav($this , $this -> navActive); ?>
+    <? printNav($this , $this -> navActive, $this -> loggedInName); ?>
  <?= $this->layout()->content ?>
  <?= $this->headScript(); ?>
 </body>
