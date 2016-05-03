@@ -1,0 +1,212 @@
+<!--<html lang="en-US">
+  <head>
+    <title> Opihi - Our Project in Hawaii's Intertidal </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" >
+  </head>
+  <body>-->
+    <!-- Login Modal section -->
+        <? //var_dump( $this->form-> getElements()['email']->getDecorators()['Zend_Form_Decorator_ViewHelper']->getElement()) ?>
+    <? var_dump( $this-> _loaderTypes) //getHelpers()['Navigation'] -> menu() )  ?> 
+
+    <div class="fade modal" id="loginModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">
+            Login
+            </h3>
+            <button class="close" data-dismiss="modal" href="#loginModal"> &times; </button>
+          </div>
+          <div class="modal-body">
+          <? echo $this -> loginForm ?>
+
+            <!--<div class="row">
+              <div class="col-sm-6"> - ->
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="uemail" class="col-xs-12 col-sm-3 control-label"> Email </label>
+                    <div class="col-xs-12 col-sm-9">
+                      <input class="form-control" placeholder="Email" type="email" name="uemail">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="upass" class="col-xs-12 col-sm-3 control-label"> Password </label>
+                    <div class="col-xs-12 col-sm-9">
+                      <input class="form-control" placeholder="Password" type="password" name="upass">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-9 col-sm-offset-3 control-label" for="rememberme" >
+                      <input type="checkbox"  name="rememberme"></input> Remember me
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12" >
+                      <button type="submit" class="btn-block btn btn-success">Log in</button>
+                    </div>
+                  </div>
+                </form>
+                -->
+              <!--</div>
+              Register form is not needed-->
+              <!-- <div class="col-sm-6 col-xs-12">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label col-sm-3 col-xs-12" for="ufirstname" > Name </label>
+                    <div class="col-xs-6 col-sm-9 input-group no-gap-cols">
+                      <div class="col-sm-5">
+                        <input class="form-control" type="text" name="ufirstname" placeholder="First">
+                      </div>
+                      <div class="col-sm-7">
+                        <input class="form-control" type="text" name="ulastname" placeholder="Last">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3 col-xs-12" for="uemail" > Email </label>
+                    <div class="col-xs-12 col-sm-9">
+                      <input class="form-control" type="email" name="uemail" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3 col-xs-12" for="uphone" > Phone </label>
+                    <div class="col-xs-12 col-sm-9">
+                      <input class="form-control" type="tel" name="uphone" placeholder="Phone Number">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-3 col-xs-12" for="uschool" > School </label>
+                    <div class="col-xs-12 col-sm-9">
+                      <input class="form-control" type="text" name="uschool" placeholder="Name of school">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button type="submit" class="btn-block btn btn-primary"> Register </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of login modal section -->
+    <nav class="nav navbar-nav navbar-default navbar-fixed-top" role="navigation" >
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" > <span class="icon-bar"> </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> </button>
+          <!--<a class="navbar-brand" href="#"> Opihi intertidial project </a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul   class="nav navbar-nav">
+            <li class="active"> <a href="#"><span class="glyphicon glyphicon-home" ></span> Home </a></li>
+            <li> <a href="#"><span class="glyphicon glyphicon-plus" ></span> Data Entry </a> </li>
+            <li> <a href="#"> <span class="glyphicon glyphicon-search"> </span> Browse the Results </a> </li>
+            <li> <a href="#"> <span class="glyphicon glyphicon-user"> </span> Members </a> </li>
+            <li> <a href="#"> <span class="glyphicon glyphicon-envelope" > </span> Contact Us </a> </li>
+          </ul>
+          <ul class="navbar-right nav navbar-nav">
+            <li>
+              <a class="navbar-right" data-toggle="modal" href="#loginModal">
+                <span class="glyphicon glyphicon-log-in"></span> Log in / Register
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="jumbotron">
+      <div class="row">
+        <div class="col-xs-12">
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <!-- The carousel -->
+      <div class="row ">
+        <div class="col-xs-12">
+          <div id="theCarousel" class="carousel slide" data-ride="carousel" >
+            <ol class="carousel-indicators" >
+              <li data-target="#theCarousel" data-slide-to="0" class="active"> </li>
+              <li data-target="#theCarousel" data-slide-to="1" > </li>
+              <li data-target="#theCarousel" data-slide-to="2" > </li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+              <div class="item active" >
+                <img class="img-responsinve" src="http://place-hold.it/600x200&text=carousel%201">
+                <div class="carousel-caption">
+                  stuff in carousel
+                </div>
+              </div>
+              <div class="item">
+                <img class="img-responsive" src="http://place-hold.it/600x200&text=carousel%202">
+                <div class="carousel-caption">
+                  stuff in carousel second
+                </div>
+              </div>
+              <div class="item">
+                <img class="img-responsive" src="http://place-hold.it/600x200&text=carousel%203">
+                <div class="carousel-caption">
+                  stuff in carousel third
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#theCarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Main page content -->
+      <div class="row">
+        <div class="col-xs-12">
+          <p> OPIHI (Our Project in Hawaii’s Intertidal) is a school-based monitoring program of Hawaii’s rocky intertidal where students improve their scientific skills while providing assistance gathering data in an area that has not been well studied in Hawaii.
+          </p>
+          <p>
+            While taking part in OPIHI, students will learn about topics in marine ecology and conservation, species identification, and sampling techniques. Most importantly, students will build their confidence and interest in science. OPIHI provides opportunities for students to develop and investigate their own questions within the framework of monitoring biodiversity in the intertidal. We hope this place-based learning connects students to their local environments and natural resources and encourages wise stewardship.
+          </p>
+          <p>
+            On this website you’ll find information on Hawaii’s unique intertidal, details on OPIHI methods and survey sites, and educational materials designed to assist teachers and students in exploring the intertidal and becoming part of this exciting monitoring project.
+          </p>
+          <p>
+            The opihi is a large limpet found only in the rocky intertidal in Hawaii, and its cultural importance and threatened status are representative of why we are interested in the intertidal. The rationale behind OPIHI is summarized beautifully in the following passage from the Log of the Sea of Cortez by John Steinbeck:
+          </p>
+          <p><blockquote>
+            It is easy to remember when we were small and lay on our stomachs beside a tide pool and our minds and eyes went so deeply into it that size and identity were lost, and the creeping hermit crab was our size and the tiny octopus a monster. Then the waving algae covered us and we hid under a rock at the bottom and leaped out at fish. It is very possible that we, and even those who probe space with equations, simply extend this wonder.
+          </blockquote></p>
+          <p>
+            <b>PROJECT INFORMATION</b><br /><br />
+          </p>
+          The following is an OPIHI program snapshot and covers many of the most frequently asked questions.<br /><br />
+          The Basics:<br />
+          <ul>
+            <li>OPIHI is a rocky intertidal monitoring project.</li>
+            <li>The program is geared towards middle and high school students due to the scientific rigor of the methods.</li>
+            <li>The OPIHI project and lessons are inquiry-based.</li>
+            <li>You do not need any prior knowledge about the intertidal to take part in OPIHI.  The program is setup so teachers and students learn together.</li>
+            <li>OPIHI is a program that encourages students to study Hawaii’s marine environment while staying relatively dry.  Students do not swim, in accordance with DOE regulations, and do not get wet above the knees.</li>
+            <li>OPIHI is aligned with many of the elements of the NSCS in Life Science, corresponding HCPS III content standards, and the Ocean Literacy principles.  Click here for more information. (link to standards)</li>
+          </ul>
+          <br />
+          Time, Money, and Materials:<br />
+          <ul>
+            <li>OPIHI is extremely flexible.  We encourage you to tailor the program to meet the needs of your curriculum.</li>
+            <li>The amount of time needed for OPIHI is dependent on each teacher’s wants and needs.  The core lessons of OPIHI take approximately 4-5 hours in class in addition to a field trip.  Some teachers involved in the project use OPIHI as the basis for a semester-long ecological unit with multiple field trips.  Click here for more information. (link to scope and sequence)</li>
+            <li>The project is easily incorporated into many disciplines including science, language arts, math, art and culture classes.  Click here for some examples.  (link to extending the learning)</li>
+            <li>All materials for the project including transects, quadrats, books, are relatively inexpensive. Quadrats are made from PVC pipe and string. Quality transects, while initially expensive, last a long time. Alternatively, you can buy one transect and contruct more from string with cable ties denoting set distances. Good reference books are essential to the project, but at minimum you only need one set.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+  </body>
+</html> -->

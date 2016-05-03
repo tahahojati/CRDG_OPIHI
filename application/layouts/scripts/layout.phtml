@@ -1,0 +1,15 @@
+<? require_once '_topnav.php' ?>
+<? $this -> doctype() ?> 
+<html lang="en">
+<head>
+    <?= $this->headTitle(); ?>
+    <?= $this->headMeta(); ?>
+    <?= $this->headLink(); ?>
+</head>
+<body>
+    <? printNav($this , $this -> navActive); ?>
+ <?= $this->layout()->content ?>
+ <?= $this->headScript(); ?>
+</body>
+</html>
+

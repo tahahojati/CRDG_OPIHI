@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - zend_edu@localhost" uuid="693483c4-1aa4-4a7c-8ab7-56b4c0f118fc">
+    <database-info product="MySQL" version="5.7.12-0ubuntu1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="zend_edu"/>
+      <table id="2" parent="1" name="location"/>
+      <table id="3" parent="1" name="location_substrate"/>
+      <table id="4" parent="1" name="organism"/>
+      <table id="5" parent="1" name="school"/>
+      <table id="6" parent="1" name="stress"/>
+      <table id="7" parent="1" name="substrate"/>
+      <table id="8" parent="1" name="quadrant_data"/>
+      <table id="9" parent="1" name="session_metadata"/>
+      <table id="10" parent="1" name="transect_data"/>
+      <table id="11" parent="1" name="user"/>
+      <column id="12" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="13" parent="2" name="location_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="14" parent="2" name="island">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="15" parent="2" name="latitude">
+        <mandatory>1</mandatory>
+        <data-type>float(10,6)</data-type>
+      </column>
+      <column id="16" parent="2" name="longitude">
+        <mandatory>1</mandatory>
+        <data-type>float(10,6)</data-type>
+      </column>
+      <column id="17" parent="2" name="sand_in_grooves">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="18" parent="2" name="sand_above">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="19" parent="2" name="sand_side">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="20" parent="2" name="freshwater_input">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <column id="21" parent="2" name="freshwater_comment">
+        <data-type>varchar(25)</data-type>
+      </column>
+      <key id="22" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="23" parent="3" name="location_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="24" parent="3" name="substrate_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="25" parent="3" name="substrate_size">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <index id="26" parent="3" name="location_id">
+        <columns>location_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="27" parent="3" name="substrate_id">
+        <columns>substrate_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="28" parent="3" name="location_substrate_ibfk_1">
+        <columns>location_id</columns>
+        <ref-key>~.location.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="29" parent="3" name="location_substrate_ibfk_2">
+        <columns>substrate_id</columns>
+        <ref-key>~.substrate.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="30" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="31" parent="4" name="category">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;Algae&apos;, &apos;Invertebrates&apos;)</data-type>
+      </column>
+      <column id="32" parent="4" name="genus">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="33" parent="4" name="species">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="34" parent="4" name="photo">
+        <mandatory>1</mandatory>
+        <data-type>tinyblob</data-type>
+      </column>
+      <key id="35" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="36" parent="5" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="37" parent="5" name="school_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="38" parent="5" name="phone">
+        <data-type>varchar(15)</data-type>
+      </column>
+      <column id="39" parent="5" name="address">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="40" parent="5" name="island">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)</data-type>
+        <default-expression>&apos;Oahu&apos;</default-expression>
+      </column>
+      <column id="41" parent="5" name="city">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="42" parent="5" name="state">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+        <default-expression>&apos;HI&apos;</default-expression>
+      </column>
+      <column id="43" parent="5" name="zip">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="44" parent="5" name="country">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+        <default-expression>&apos;USA&apos;</default-expression>
+      </column>
+      <key id="45" parent="5" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="46" parent="6" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="47" parent="6" name="stress_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="48" parent="6" name="photo">
+        <mandatory>1</mandatory>
+        <data-type>tinyblob</data-type>
+      </column>
+      <key id="49" parent="6" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="50" parent="7" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="51" parent="7" name="substrate_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="52" parent="7" name="photo">
+        <data-type>tinyblob</data-type>
+      </column>
+      <key id="53" parent="7" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="54" parent="8" name="session_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="55" parent="8" name="transect_num">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="56" parent="8" name="quadrant_num">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="57" parent="8" name="organism_id">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="58" parent="8" name="organism_num">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="59" parent="8" name="substrate_id">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="60" parent="8" name="substrate_num">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <index id="61" parent="8" name="organism_id">
+        <columns>organism_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="62" parent="8" name="session_id">
+        <columns>session_id
+transect_num
+quadrant_num</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="63" parent="8" name="substrate_id">
+        <columns>substrate_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="64" parent="8" name="session_id">
+        <columns>session_id
+transect_num
+quadrant_num</columns>
+        <underlying-index>session_id</underlying-index>
+      </key>
+      <foreign-key id="65" parent="8" name="quadrant_data_ibfk_1">
+        <columns>session_id</columns>
+        <ref-key>~.session_metadata.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="66" parent="8" name="quadrant_data_ibfk_2">
+        <columns>organism_id</columns>
+        <ref-key>~.organism.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="67" parent="8" name="quadrant_data_ibfk_3">
+        <columns>substrate_id</columns>
+        <ref-key>~.substrate.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="68" parent="9" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="69" parent="9" name="location_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="70" parent="9" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="71" parent="9" name="date">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="72" parent="9" name="low_tide_time">
+        <mandatory>1</mandatory>
+        <data-type>time</data-type>
+      </column>
+      <column id="73" parent="9" name="num_students">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="74" parent="9" name="num_assistants">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="75" parent="9" name="start_time">
+        <mandatory>1</mandatory>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <column id="76" parent="9" name="stop_time">
+        <mandatory>1</mandatory>
+        <data-type>time</data-type>
+      </column>
+      <column id="77" parent="9" name="wind_speed">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;0-1 (calm)&apos;, &apos;1-3 (light air)&apos;, &apos;4-7 (light breeze, wind felt on face, leaves rustle)&apos;, &apos;8-12 (gentle breeze, leaves in constant)&apos;, &apos;13-18 (moderate breeze, raises dust and loose paper, small branches move)&apos;, &apos;19-24 (fresh breeze, small trees sway)&apos;, &apos;25-31 (strong breeze, large branches move, hard to use umbrella)&apos;, &apos;32-38 (near gale, whole trees move)&apos;, &apos;39-46 (gale, wind impedes walking)&apos;)</data-type>
+      </column>
+      <column id="78" parent="9" name="weather">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;Sunny&apos;, &apos;Partly Cloudy&apos;, &apos;Cloudy&apos;, &apos;Voggy&apos;, &apos;Light Rain&apos;, &apos;Raining&apos;, &apos;Stormy&apos;)</data-type>
+      </column>
+      <column id="79" parent="9" name="prior_rain">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="80" parent="9" name="rain_amount">
+        <data-type>float(4,2) unsigned</data-type>
+      </column>
+      <column id="81" parent="9" name="stress_id">
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="82" parent="9" name="wave_height">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;1-3&apos;, &apos;4-6&apos;, &apos;7-10&apos;, &apos;11-15&apos;, &apos;16-20&apos;, &apos;above 20&apos;)</data-type>
+      </column>
+      <column id="83" parent="9" name="num_people">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;0&apos;, &apos;1-5&apos;, &apos;6-10&apos;, &apos;11-15&apos;, &apos;16-20&apos;, &apos;21-25&apos;, &apos;26-30&apos;)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="84" parent="9" name="num_fishing">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;0&apos;, &apos;1-5&apos;, &apos;6-10&apos;, &apos;11-15&apos;, &apos;16-20&apos;)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="85" parent="9" name="num_collecting">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;0&apos;, &apos;1-5&apos;, &apos;6-10&apos;, &apos;11-15&apos;)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="86" parent="9" name="collecting">
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="87" parent="9" name="num_transect_lines">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="88" parent="9" name="length_transect_lines">
+        <mandatory>1</mandatory>
+        <data-type>float(4,2)</data-type>
+      </column>
+      <column id="89" parent="9" name="point_spacing">
+        <mandatory>1</mandatory>
+        <data-type>enum(&apos;1/4 meter&apos;, &apos;1/2 meter&apos;, &apos;3/4 meter&apos;, &apos;1 meter&apos;)</data-type>
+      </column>
+      <column id="90" parent="9" name="comments">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <index id="91" parent="9" name="location_id">
+        <columns>location_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="92" parent="9" name="stress_id">
+        <columns>stress_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="93" parent="9" name="user_id">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="94" parent="9" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="95" parent="9" name="session_metadata_ibfk_1">
+        <columns>location_id</columns>
+        <ref-key>~.location.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="96" parent="9" name="session_metadata_ibfk_2">
+        <columns>user_id</columns>
+        <ref-key>~.user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="97" parent="9" name="session_metadata_ibfk_3">
+        <columns>stress_id</columns>
+        <ref-key>~.stress.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="98" parent="10" name="session_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="99" parent="10" name="transect_num">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="100" parent="10" name="transect_point">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="101" parent="10" name="organism_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="102" parent="10" name="organism_num">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="103" parent="10" name="substrate_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <column id="104" parent="10" name="substrate_num">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+      </column>
+      <index id="105" parent="10" name="organism_id">
+        <columns>organism_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="106" parent="10" name="session_id">
+        <columns>session_id
+transect_num
+transect_point</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="107" parent="10" name="substrate_id">
+        <columns>substrate_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="108" parent="10" name="session_id">
+        <columns>session_id
+transect_num
+transect_point</columns>
+        <underlying-index>session_id</underlying-index>
+      </key>
+      <foreign-key id="109" parent="10" name="transect_data_ibfk_1">
+        <columns>session_id</columns>
+        <ref-key>~.session_metadata.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="110" parent="10" name="transect_data_ibfk_2">
+        <columns>organism_id</columns>
+        <ref-key>~.organism.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="111" parent="10" name="transect_data_ibfk_3">
+        <columns>substrate_id</columns>
+        <ref-key>~.substrate.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="112" parent="11" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="113" parent="11" name="first_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="114" parent="11" name="last_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+      </column>
+      <column id="115" parent="11" name="school_name">
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="116" parent="11" name="school_address">
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="117" parent="11" name="island">
+        <mandatory>1</mandatory>
+        <data-type>varchar(15)</data-type>
+        <default-expression>&apos;Oahu&apos;</default-expression>
+      </column>
+      <column id="118" parent="11" name="email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="119" parent="11" name="salt">
+        <mandatory>1</mandatory>
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="120" parent="11" name="role">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+        <default-expression>&apos;teacher&apos;</default-expression>
+      </column>
+      <column id="121" parent="11" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)</data-type>
+      </column>
+      <key id="122" parent="11" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
