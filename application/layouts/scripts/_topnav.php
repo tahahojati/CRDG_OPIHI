@@ -27,6 +27,10 @@ function printNav($view , $active = 0, $login = 1){
             'href' => $view -> url(array('controller'=>'User', 'action' =>'register')),
             'content' => '<span class="glyphicon glyphicon-user"> </span> Register new teacher',
         ),
+		array(
+            'href' => $view -> url(array('controller'=>'Study', 'action' =>'create')),
+            'content' => '<span class="glyphicon glyphicon-user"> </span> Create a new field trip',
+        ),
         );
     $navdata[$active]['active'] = 'active' ; 
     if($login === 1){

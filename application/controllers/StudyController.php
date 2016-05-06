@@ -2,10 +2,13 @@
 
 class StudyController extends Zend_Controller_Action
 {
-
+	public $userModel; 
+	public $studyModel; 
     public function init()
     {
         /* Initialize action controller here */
+		$this -> userModel =  Application_Model_User::getInstance(); 
+		$this -> studyModel = Application_Model_Study::getInstance(); 
     }
 
     public function indexAction()
@@ -30,7 +33,12 @@ class StudyController extends Zend_Controller_Action
 
     public function createAction()
     {
-        // action body
+        $request = $this -> getRequest(); 
+		if(! $request -> isPost() ) {
+			//var_dump($this -> userModel -> _currentUser) ; 
+			$this -> view -> createStudyForm = $this -> studyModel -> getCreateStudyForm($this -> userModel -> _currentUser -> island); 
+			return $this -> render(); 	
+		}
     }
 
     public function deleteAction()

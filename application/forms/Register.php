@@ -54,7 +54,7 @@ class Application_Form_Register extends Zend_Form
         $element = $this->createElement('text', 'email', array(
             'label' => "Teacher's email address",
             'required' => true,
-            'validators' => ['EmailAddress', ['UniqueEmail', false, new Application_Model_User()]],
+            'validators' => ['EmailAddress', ['UniqueEmail', false, Application_Model_User::getInstance()]],
 			'filters' => ['StringTrim', 'StringToLower'] 
 
         ));

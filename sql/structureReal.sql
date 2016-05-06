@@ -24,7 +24,7 @@ CREATE TABLE school (
   school_name varchar(50) NOT NULL,
   phone varchar(15),
   address varchar(100) NOT NULL,
-  island varchar(15) NOT NULL DEFAULT 'Oahu',
+  island ENUM('Oahu', 'Hawaii', 'Maui', 'Kauai', 'Molokai', 'Lanai') NOT NULL DEFAULT 'Oahu',
   city varchar(25) NOT NULL,
   state varchar(25) NOT NULL DEFAULT 'HI',
   zip int unsigned NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE user (
 CREATE TABLE location (
   id int unsigned NOT NULL AUTO_INCREMENT,
   location_name varchar(50) NOT NULL,
-  island varchar(25) NOT NULL,
+  island ENUM('Oahu', 'Hawaii', 'Maui', 'Kauai', 'Molokai', 'Lanai') NOT NULL DEFAULT 'Oahu',
   latitude float(10,6) NOT NULL,
   longitude float(10,6) NOT NULL,
   sand_in_grooves boolean NOT NULL,
@@ -71,6 +71,7 @@ CREATE TABLE location (
   sand_side boolean NOT NULL,
   freshwater_input boolean NOT NULL,
   freshwater_comment varchar(25) DEFAULT NULL,
+  photo tinyblob DEFAULT NULL, 
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -122,13 +123,13 @@ CREATE TABLE substrate (
 -- Table structure for table location_substrate
 --
 
-CREATE TABLE location_substrate (
-  location_id int unsigned NOT NULL,
-  substrate_id int unsigned NOT NULL,
-  substrate_size int unsigned NOT NULL,
-  FOREIGN KEY (location_id) REFERENCES location (id),
-  FOREIGN KEY (substrate_id) REFERENCES substrate (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE location_substrate (
+--   location_id int unsigned NOT NULL,
+--   substrate_id int unsigned NOT NULL,
+--   substrate_size int unsigned NOT NULL,
+--   FOREIGN KEY (location_id) REFERENCES location (id),
+--   FOREIGN KEY (substrate_id) REFERENCES substrate (id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -144,8 +145,8 @@ CREATE TABLE session_metadata (
   date date NOT NULL,
   low_tide_time time NOT NULL,
   num_students int unsigned NOT NULL,
-  num_assistants int unsigned NOT NULL DEFAULT '0',
-  start_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--  num_assistants int unsigned NOT NULL DEFAULT '0',
+  start_time time NOT NULL,
   stop_time time NOT NULL,
   wind_speed enum('0-1 (calm)','1-3 (light air)','4-7 (light breeze, wind felt on face, leaves rustle)','8-12 (gentle breeze, leaves in constant)','13-18 (moderate breeze, raises dust and loose paper, small branches move)','19-24 (fresh breeze, small trees sway)','25-31 (strong breeze, large branches move, hard to use umbrella)','32-38 (near gale, whole trees move)','39-46 (gale, wind impedes walking)') NOT NULL,
   weather enum('Sunny','Partly Cloudy','Cloudy','Voggy','Light Rain','Raining','Stormy') NOT NULL,
@@ -158,6 +159,7 @@ CREATE TABLE session_metadata (
   num_collecting enum('0','1-5','6-10','11-15') NOT NULL DEFAULT '0',
   collecting varchar(5) DEFAULT NULL,
   num_transect_lines int unsigned NOT NULL,
+  num_quadrants_per_transect int unsigned NOT NULL DEFAULT 0, 
   length_transect_lines float(4,2) NOT NULL,
   point_spacing enum('1/4 meter','1/2 meter','3/4 meter','1 meter') NOT NULL,
   comments varchar(50) DEFAULT NULL,

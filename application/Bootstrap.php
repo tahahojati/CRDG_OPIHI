@@ -34,7 +34,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$this -> _view -> headLink() -> appendStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'); 
 		$this -> _view -> headLink() -> appendStylesheet('/css/main.css');
 		$this -> _view -> headScript() -> appendFile('https://code.jquery.com/jquery-2.2.3.min.js', 'text/javascript', array('integrity' => 'sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=' )); 
-		$this -> _view -> headScript() -> appendFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'); 
+		$this -> _view -> headScript() -> appendFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+		$this -> _view -> headScript() -> appendFile('https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/Rx.min.js');  
 		$this -> _view -> headTitle() -> setSeparator(' - ');
 		$this -> _view -> headTitle('OPIHI');
 		$this -> _view -> headMeta() -> appendName('viewport', 'width=device-width, initial-scale=1') ; 

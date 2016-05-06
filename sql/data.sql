@@ -1,5 +1,6 @@
 DELETE from school;
 DELETE from user;
+DELETE from location; 
 INSERT INTO school (school_name,address,city,zip,phone,island)  values
 ("Ahuimanu Elementary","174 Kamehameha Avenue","Hilo",96720,"(808) 961-3664","Hawaii" ),
 ("Aiea Elementary","98-1276 Ulune Street","Aiea",96701,"(808) 483-7300","Oahu" ),
@@ -119,4 +120,7 @@ INSERT INTO school (school_name,address,city,zip,phone,island)  values
 ("Kealakehe High","18-1355 Volcano Highway  P.O. Box 711539","Mountain View",96771,"(808) 966-6175","Hawaii" ),
 ("Kealakehe Intermediate","2428 Wilder Avenue","Honolulu",96822,"(808) 521-9770","Oahu" );
 
-INSERT INTO user (first_name, last_name, email, salt, role, password) VALUES ('Joanna', 'P', 'jp@jp.com', '  ', 'admin', 'hello');
+INSERT INTO user (first_name, last_name, island, email, salt, role, password) VALUES ('tph', 'tph','Oahu', 'tph@tph.com', "bsV'AF<R50h<2dUnfioM]B[x496uqDJU", 'admin', 'ea701838e52860936aaa87dca6b52c86ac1ffd98');
+INSERT INTO location (  location_name , island, latitude ,longitude ,sand_in_grooves ,sand_above  ,sand_side  ,freshwater_input , freshwater_comment , photo  ) values ('sand island', 'Oahu', 23, 23, true, true, true, true, 'stuff happened here', NULL),
+('hawaii sand island', 'Hawaii', 23, 23, true, true, true, true, 'stuff happened here', NULL)
+ ; 

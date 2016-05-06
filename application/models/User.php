@@ -2,14 +2,30 @@
 
 class Application_Model_User
 {
+	private static $_instance = null; 
     public $table;
     /**
      * @return Application_Form_Register
      */
     public $forms =[];
-    public function __construct()
+	public $_currentUser; 
+	public $_auth;
+	
+	public static function getInstance(){
+		if(self :: $_instance ===null){
+			self :: $_instance = new self(); 
+		}
+		return self::$_instance; 
+	}
+    private function __construct()
     {
         $this -> table = new Application_Model_Resource_User();
+		$this -> _auth = Zend_Auth::getInstance();
+		$this -> _currentUser = null ; 
+		if( $this -> _auth -> hasIdentity()){
+			$this -> _currentUser = $this -> _auth->getIdentity();
+			$this -> _currentUser = $this -> table -> find($this -> _currentUser['id']) -> current(); 	
+		}
     }
 
     public function getRegistrationForm(){

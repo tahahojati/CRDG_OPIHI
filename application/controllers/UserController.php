@@ -8,7 +8,7 @@ class UserController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
-        $this -> model = new Application_Model_User();
+        $this -> model =  Application_Model_User::getInstance();
 		$this -> authService = new Application_Service_Auth(); 
 		$this -> loginForm = $this -> model -> getLoginForm(); 
 		$this -> view -> loginForm = $this -> loginForm;

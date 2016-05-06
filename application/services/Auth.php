@@ -7,7 +7,7 @@ class Application_Service_Auth {
 	
 	public function __construct(){
 		$this -> _auth = Zend_Auth :: getInstance(); 
-		$this -> _userModel = new Application_Model_User(); 
+		$this -> _userModel =  Application_Model_User::getInstance(); 
 		$this -> _authadapter = new Zend_Auth_Adapter_DbTable(
 			Zend_Db_Table_Abstract::getDefaultAdapter(),
 			'user',
@@ -32,7 +32,7 @@ class Application_Service_Auth {
 			return false ;
 		}
 		$user = $this -> _userModel -> getUserByEmail($credentials['email'] ) ; 
-		$this -> _auth -> getStorage() -> write(['email' => $user['email'], 'fname' => $user['first_name'], 'lname' => $user['last_name'] ]); 
+		$this -> _auth -> getStorage() -> write(['id' => $user['id'] , 'email' => $user['email'], 'fname' => $user['first_name'], 'lname' => $user['last_name'] ]); 
 		return true;
 	}
 	
