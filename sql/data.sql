@@ -124,3 +124,8 @@ INSERT INTO user (first_name, last_name, island, email, salt, role, password) VA
 INSERT INTO location (  location_name , island, latitude ,longitude ,sand_in_grooves ,sand_above  ,sand_side  ,freshwater_input , freshwater_comment , photo  ) values ('sand island', 'Oahu', 23, 23, true, true, true, true, 'stuff happened here', NULL),
 ('hawaii sand island', 'Hawaii', 23, 23, true, true, true, true, 'stuff happened here', NULL)
  ; 
+ 
+ 
+ 
+ -- this file must be generated with the php script; 
+ -- source random_ids.txt; 

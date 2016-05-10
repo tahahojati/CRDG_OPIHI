@@ -10,6 +10,7 @@ class Application_Model_Resource_MetaTable extends  Zend_Db_Table_Abstract
 {
     protected $_name = 'session_metadata';
     protected $_primary = 'id';
+	protected $_sequence = false; 
     
 
 }

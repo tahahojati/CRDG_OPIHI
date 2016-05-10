@@ -13,6 +13,7 @@
   drop table  if exists stress;
   drop table  if exists organism;
   drop table  if exists location;
+  drop table if exists random_id; 
 
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE substrate (
 --
 
 CREATE TABLE session_metadata (
-  id int unsigned NOT NULL AUTO_INCREMENT,
+  id int unsigned NOT NULL,
   location_id int unsigned NOT NULL,
   user_id int unsigned NOT NULL,
   date date NOT NULL,
@@ -162,7 +163,7 @@ CREATE TABLE session_metadata (
   num_quadrants_per_transect int unsigned NOT NULL DEFAULT 0, 
   length_transect_lines float(4,2) NOT NULL,
   point_spacing enum('1/4 meter','1/2 meter','3/4 meter','1 meter') NOT NULL,
-  comments varchar(50) DEFAULT NULL,
+  comments text DEFAULT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY (location_id) REFERENCES location(id),
   FOREIGN KEY (user_id)  REFERENCES user(id),
@@ -173,13 +174,15 @@ CREATE TABLE session_metadata (
 
 
 CREATE TABLE transect_data (
+  id int unsigned auto_increment,
   session_id int unsigned NOT NULL,
   transect_num int unsigned NOT NULL,
   transect_point int unsigned NOT NULL,
-  organism_id int unsigned NOT NULL,
-  organism_num int unsigned NOT NULL,
-  substrate_id int unsigned NOT NULL,
-  substrate_num int unsigned NOT NULL,
+  organism_id int unsigned DEFAULT NULL,
+--  organism_num int unsigned ,
+  substrate_id int unsigned DEFAULT NULL,
+--  substrate_num int unsigned ,
+  PRIMARY KEY(id),
   UNIQUE (session_id, transect_num, transect_point),
   FOREIGN KEY (session_id) REFERENCES session_metadata (id),
   FOREIGN KEY (organism_id) REFERENCES organism(id),
@@ -195,16 +198,26 @@ CREATE TABLE transect_data (
 --
 
 CREATE TABLE quadrant_data (
+  id int unsigned not null auto_increment,
   session_id int unsigned NOT NULL,
   transect_num int unsigned NOT NULL,
-  quadrant_num int unsigned NOT NULL,
+  quadrant_placement int unsigned NOT NULL,
   organism_id int unsigned DEFAULT NULL,
   organism_num int unsigned DEFAULT NULL,
   substrate_id int unsigned DEFAULT NULL,
   substrate_num int unsigned DEFAULT NULL,
+  primary key(id), 
   UNIQUE(session_id, transect_num, quadrant_num),
   FOREIGN KEY (session_id) REFERENCES session_metadata (id),
   FOREIGN KEY (organism_id) REFERENCES organism(id),
   FOREIGN KEY (substrate_id) REFERENCES substrate(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--Table of random page ids used for the transect pages
+
+CREATE TABLE random_id (
+ id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+ random INT UNSIGNED NOT NULL,
+ PRIMARY KEY (id),
+ UNIQUE(random)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,4 +1,19 @@
 <br /><br />
 <div id="view-content">
-	<p>View script for controller <b>Study</b> and script/action name <b>get</b></p>
+	<? if(isset($this -> studyLinks)): ?> 
+		<? foreach($this -> studyLinks as $link) : ?>
+        <a href="<?= $this -> url(array('action' => 'get', 'controller' => 'study', 'id' => $link['id'])) ?>" > <?= 'Date: '.
+            $link['date'].'.      Location: '.$link['location'] ?> </a> <br/>
+        <? endforeach ?>
+    <? elseif(isset ($this -> transectLinks)): ?>
+    
+    	<? foreach($this -> transectLinks as $link) : ?>
+
+        	<a href="<?= $this -> url (array('action' => 'get-transect', 'controller' => 'study', 
+				'session_id' => $link['session_id'], 'transect_num' => $link['transect_num'] ))?>"  > 
+                <?= 'Location: '.$link['location'].' Date: '.$link['date'].' transect number: '.$link['transect_num'] ?> 
+            	<br/>
+            </a>
+        <? endforeach ?>
+    <? endif ?>
 </div>

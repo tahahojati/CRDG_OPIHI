@@ -34,6 +34,7 @@
           <actionMethod actionName="update"/>
           <actionMethod actionName="analyze"/>
           <actionMethod actionName="download"/>
+          <actionMethod actionName="updateTransect"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -108,6 +109,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="member"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Study">
+            <viewScriptFile forActionName="updateTransect"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
