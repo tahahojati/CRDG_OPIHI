@@ -1,6 +1,6 @@
   <?php
   
-  class Application_Form_CreateStudy extends Zend_Form {
+  class Application_Form_CreateStudy extends Application_Form_Abstract {
 	  private $studyModel; 
 	  private $island;
 	  
@@ -11,7 +11,7 @@
 			'required' => true ,
 		  ]);
 		  
-		  $this -> addElement($element);
+		  $this -> addElementWithClass($element);
 		  return $element; 
 	  } 
 	  private function addEnumSelect($name, $label, $col = null){
@@ -19,13 +19,14 @@
 		  $element = $this -> createElement('select' , $name , [
 			  'label' => $label,
 			  'required' => true , 
+			  'class' => 'form-control',
 		  ]);
 		  
 		  $mlist = $this -> studyModel -> getEnumValues($col); 
 		  foreach($mlist as $listitem){
 			  $element -> addMultiOption($listitem , $listitem ); 
 		  }
-		  $this -> addElement($element); 
+		  $this -> addElementWithClass($element); 
 		return $element; 
 	}
 	  private function addDate($name , $label, $value = null){
@@ -36,7 +37,7 @@
 		  ]);
 		  if ($value != null) $element -> setValue($value); 
 		  
-		  $this -> addElement($element);
+		  $this -> addElementWithClass($element);
 		  return $element;   
 	  }
 	  private function addTime($name , $label, $value = null){
@@ -47,10 +48,12 @@
 		  ]);
 		  if ($value != null) $element -> setValue($value); 
 		  
-		  $this -> addElement($element);
+		  $this -> addElementWithClass($element);
 		  return $element;   
 	  }
 	  public function init(){ 
+	  	parent::init();
+		//$this -> addPrefixPath('','','element');
 		  //$this -> addElementPrefixPath('Application_Form_Helper',APPLICATION_PATH.'/forms/helpers', 'decorator');
 		  if($this -> getAttrib('studyModel') == null) {
 			  throw Exception ('You should pass an instance of the study model to the CreateStudy form.'); 		
@@ -59,15 +62,13 @@
 		  $this -> island = $this -> getAttrib('island'); 
 		  $this -> removeAttrib('island'); 
 		  $this -> removeAttrib('studyModel'); 
-		  $this -> addElement('text', 'guide1' ,[
-		  'helper' => 'formNote', 
-		  'label' => "Select a location from below to see its details such as latitude and longitude and a picture. If you cannot find the location of your field trip in the list, you may create a new location using the appropriate option."
-		  ]) ;
+		  $this -> addADescription("guide1", "Select a location from below to see its details such as latitude and longitude and a picture. If you cannot find the location of your field trip in the list, you may create a new location using the appropriate option.") ;
 		  //var_dump($element); 
 	     $this -> addDate('date','Date of the field trip: ',  date('Y-m-d'));
 		  $element = $this -> createElement('select' , 'location_id', [
 			  'required' => true,
 			  'label' => 'Select the location of your field trip',
+			  'class' => 'form-control',
 		  ]); 
 		  $locationList = $this -> studyModel -> getLocations($this -> island); 
 		  //var_dump($locationList) ; 
@@ -78,10 +79,10 @@
 		  
 		  $this -> addElement($element); 
 		  // Class info section
-		  //$this -> addElement('text' , 'exp1', [
-			  //'value' => 'Please provide the following information about your class:',
-			//  'helper' => 'formNote'
-		  //]);
+		  $this -> addElement('text' , 'exp1', [
+			  'value' => '<h1>Please provide the following information about your class:<h1>',
+			  'helper' => 'formNote'
+		  ]);
 		  //numstudents
 	      $this -> addTime('low_tide_time','Low tide time: ');
 
@@ -95,10 +96,7 @@
 		  $this -> addEnumSelect( 'point_spacing' , 'Distance between transect points: ');
 		  //num quadrants
 		  $this -> addNumber ('num_quadrants_per_transect','Number of quadrants per transect: '); 
-	      $this -> addElement('text', 'exp2', [
-		  'label' => 'Please provide the following information about the location and time of your field trip',
-		  'helper' => 'formNote'
-	  ]);
+	      $this -> addADescription( 'guide2', 'Please provide the following information about the location and time of your field trip');
 		  
 		  //Find the view helper FormDate under application/views/helpers
 		  $this -> addTime('start_time', 'Start bio survey time: ', date('G:i'));
@@ -108,10 +106,11 @@
 		  $this -> addEnumSelect('weather', 'Weather Conditions: '); 
 		  $this -> addElement('radio' , 'prior_rain',['label' => 'Rain events in prior week? ',
 			  'multiOptions' => ['yes' => 'Yes' , 'no' => 'No' ],
+			  'label_class' => 'radio-inline',
+			  'separator'=> " \n "
+			  
 		  ]);
-		  $this -> addNumber ('rain_amount', 'If Yes, amount of rain: ' );
-		  $this -> addElement($element); 
-		  
+		  $this -> addNumber ('rain_amount', 'If Yes, amount of rain: ' );		  
 		  //wave height
 		  $this -> addEnumSelect('wave_height', 'Average wave height: ');
 		  /*$this -> addElement('radio' , 'sand_in_grooves',['label' => 'Sand in grooves/pools? ',
@@ -133,13 +132,19 @@
 		  $this -> addEnumSelect('num_collecting', 'Number of people collecting: '); 
 		  //collecting
 		  $this -> addElement('text' , 'collecting' , [
-			  'label' => 'What were they collecting?'
+			  'label' => 'What were they collecting?',
+			  'class' => 'form-control',
 		  ]);
 			  $this -> addElement('textarea' , 'comments' ,[
 			  'label' => 'Comments: ',
-			  'rows' => 5
+			  'rows' => 5,
+			  'class' => 'form-control'
 		  ]);
 		  
-		  $this -> addElement('submit', 'submit' , ['label' => 'Create report']);
+		  $e = $this -> createElement('submit', 'submit' , ['label' => 'Create report', 'class' => 'btn btn-primary btn-block',]);
+		  $e -> removeDecorator('Label');
+		  $e -> getDecorator('first')->setOption('class', 'col-xs-8 col-sm-4 col-xs-offset-3');
+		  var_dump($e -> getDecorator('first'));
+	  	  $this -> addElement($e); 
 	  }
   }

@@ -6,7 +6,7 @@
  * Date: 4/30/16
  * Time: 8:32 PM
  */
-class Application_Form_Login extends Zend_Form
+class Application_Form_Login extends Application_Form_Abstract
 {
     public function init()
     {
@@ -20,25 +20,26 @@ class Application_Form_Login extends Zend_Form
             'label' => "Email",
             'required' => true,
             'validators' => ['EmailAddress'],
-			'filters' => ['StringTrim', 'StringToLower'] 
+			'filters' => ['StringTrim', 'StringToLower'],
+			'helper' => 'formEmail',
+			'class' => 'form-control'
 
         ));
         $this->addElement($element);
         $element = $this->createElement('password', 'password', array(
             'label' => "Password",
             'required' => true,
+			'class' => 'form-control'
         ));
         $this->addElement($element);
         $element = $this->createElement('submit', 'submit', array(
             'label' => "Login",
             'required' => true,
+			'class' => 'btn btn-primary btn-block',
         ));
+		$element -> getDecorator('first')->setOption('class',  'col-xs-offset-3 col-xs-8 col-sm-4');
+		$element -> removeDecorator('Label'); 
         $this->addElement($element);
-        $this -> addDecorator('formElements');
-        $this -> addDecorator('htmlTag');
-        $this -> addDecorator('formErrors');
-        $this -> addDecorator('form');
-        $this -> getDecorator('formErrors') -> setOption('placement','PREPEND');
         $this -> setAction('/User/authenticate');
         $this -> setMethod('post');
     }

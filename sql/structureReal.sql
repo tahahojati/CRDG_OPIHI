@@ -13,7 +13,7 @@
   drop table  if exists stress;
   drop table  if exists organism;
   drop table  if exists location;
-  drop table if exists random_id; 
+  drop table if exists random_id;
 
 
 --
@@ -47,8 +47,8 @@ CREATE TABLE user (
   school_address varchar(200) DEFAULT NULL ,
   island VARCHAR(15) NOT NULL DEFAULT 'Oahu',
   email varchar(255) NOT NULL,
-  salt varchar (32) NOT NULL, 
-  role varchar (10) NOT NULL DEFAULT 'teacher', 
+  salt varchar (32) NOT NULL,
+  role varchar (10) NOT NULL DEFAULT 'teacher',
   password varchar (40) NOT NULL,
   PRIMARY KEY (id)
  -- FOREIGN KEY (school_id) REFERENCES school (id)
@@ -72,7 +72,7 @@ CREATE TABLE location (
   sand_side boolean NOT NULL,
   freshwater_input boolean NOT NULL,
   freshwater_comment varchar(25) DEFAULT NULL,
-  photo tinyblob DEFAULT NULL, 
+  photo tinyblob DEFAULT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -87,7 +87,7 @@ CREATE TABLE organism (
   category enum('Algae','Invertebrates') NOT NULL,
   genus varchar(20) NOT NULL,
   species varchar(20) NOT NULL,
-  photo tinyblob NOT NULL,
+  photo tinyblob ,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -160,7 +160,7 @@ CREATE TABLE session_metadata (
   num_collecting enum('0','1-5','6-10','11-15') NOT NULL DEFAULT '0',
   collecting varchar(5) DEFAULT NULL,
   num_transect_lines int unsigned NOT NULL,
-  num_quadrants_per_transect int unsigned NOT NULL DEFAULT 0, 
+  num_quadrants_per_transect int unsigned NOT NULL DEFAULT 0,
   length_transect_lines float(4,2) NOT NULL,
   point_spacing enum('1/4 meter','1/2 meter','3/4 meter','1 meter') NOT NULL,
   comments text DEFAULT NULL,
@@ -196,6 +196,12 @@ CREATE TABLE transect_data (
 --
 -- Table structure for table quadrant_data
 --
+CREATE TABLE random_id (
+ id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+ random INT UNSIGNED NOT NULL,
+ PRIMARY KEY (id),
+ UNIQUE(random)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE quadrant_data (
   id int unsigned not null auto_increment,
@@ -206,18 +212,10 @@ CREATE TABLE quadrant_data (
   organism_num int unsigned DEFAULT NULL,
   substrate_id int unsigned DEFAULT NULL,
   substrate_num int unsigned DEFAULT NULL,
-  primary key(id), 
+  quadrant_num int unsigned DEFAULT NULL,
+  primary key(id),
   UNIQUE(session_id, transect_num, quadrant_num),
   FOREIGN KEY (session_id) REFERENCES session_metadata (id),
   FOREIGN KEY (organism_id) REFERENCES organism(id),
   FOREIGN KEY (substrate_id) REFERENCES substrate(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---Table of random page ids used for the transect pages
-
-CREATE TABLE random_id (
- id INT UNSIGNED NOT NULL AUTO_INCREMENT,
- random INT UNSIGNED NOT NULL,
- PRIMARY KEY (id),
- UNIQUE(random)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

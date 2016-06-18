@@ -117,7 +117,14 @@ class StudyController extends Zend_Controller_Action
 
     public function updateTransectAction()
     {
-        // action body
+		$transect = [];
+       $transect[] =  'homo sapian' ;
+       $transect[] =  'rock' ;
+       $transect[] =  '3rd species' ;
+       $transect[] =  'rock' ;
+       $transect[] =  'worm hole' ;
+       $transect[] =  '3rd species' ;
+	   var_dump($this -> getRequest() -> getPost()); 
     }
 
 

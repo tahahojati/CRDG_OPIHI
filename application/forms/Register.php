@@ -6,7 +6,7 @@
  * Date: 4/30/16
  * Time: 8:32 PM
  */
-class Application_Form_Register extends Zend_Form
+class Application_Form_Register extends Application_Form_Abstract
 {
     public function init()
     {

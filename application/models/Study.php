@@ -31,7 +31,7 @@ class Application_Model_Study
 	
 	public function getCreateStudyForm($island){
 		if(! isset($this -> forms['createStudy']))
-			$this -> forms['createStudy'] = new Application_Form_CreateStudy(['studyModel' => $this, 'island' => $island] );	
+			$this -> forms['createStudy'] = new Application_Form_CreateStudy(['attribs'=> ['studyModel' => $this, 'island' => $island] ]);	
 		return $this -> forms['createStudy']; 
 	}
 	public function getTransectForm($session_id = null, $transect_num = null){
@@ -43,7 +43,8 @@ class Application_Model_Study
 		$select = $this -> transectTable -> select();
 		$select -> where('session_id = ?', $session_id) -> where('transect_num = ?', $transect_num); 
 		$res= $select -> query() -> fetchAll(); 
-		return $res; 
+		$form = new Application_Form_Transect(['attribs' => ['studyModel' => $this, 'trData' => $res]]); 
+		return $form; 
 	}
 	public function getLocations($island){
 		$select = $this -> locationTable-> select(); 
@@ -114,6 +115,17 @@ class Application_Model_Study
 		$select -> where('session_id = ?',$sessionId); 
 		$res = $select -> query() -> fetchAll() -> toArray(); 
 		return $res; 
+	}
+	public function getOrganismById($id = null){
+		if($id == null)
+			return $this -> organismTable -> fetchAll() ->toArray();
+		//var_dump($id); 
+		return $this -> organismTable -> find($id)[0] ;	
+	}
+	public function getSubstrateById($id = null){
+		if($id == null)
+			return $this -> substrateTable -> fetchAll() -> toArray(); 
+		return $this -> substrateTable -> find($id)[0];	
 	}
 }
 

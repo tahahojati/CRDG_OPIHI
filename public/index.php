@@ -1,5 +1,7 @@
 <?php
-
+ini_set("display_startup_errors" ,"on");
+ini_set("display_errors", "on");
+ini_set("html_errors",  "on");
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
